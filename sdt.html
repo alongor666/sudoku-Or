@@ -1,14 +1,11 @@
-<html lang="zh-CN">  
+<html lang="zh-CN">
 <head>
-    <!-- 头部信息和元数据 -->
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="一个友好的数独游戏，支持4种难度和3个主题模式">
     <title>Orange数独</title>
     <style>
-        /* CSS样式定义 */
         :root {
-            /* 颜色变量定义 */
             --bg-color: #f0f0f0;
             --text-color: #333;
             --board-bg: #fff;
@@ -32,7 +29,6 @@
             --control-hover-color: #000000;
         }
         body {
-            /* 主体样式 */
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
@@ -42,31 +38,28 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color 0.3s, color 0.3s;
-            font-size: 16px; /* 降低基础字体大小 */
-            padding: 10px; /* 添加一些内边距 */
+            font-size: 16px;
+            padding: 10px;
         }
         #game-container {
-            /* 游戏容器样式 */
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: 100%; /* 确保不超过屏幕宽度 */
+            max-width: 100%;
         }
         #sudoku-board {
-            /* 数独棋盘样式 */
             display: grid;
             grid-template-columns: repeat(9, 1fr);
             gap: 1px;
-            max-width: 100%; /* 确保棋盘不超过屏幕宽度 */
+            max-width: 100%;
             aspect-ratio: 1 / 1;
         }
         .cell {
-            /* 单元格样式 */
             display: flex;
             align-items: center;
             justify-content: center;
             aspect-ratio: 1 / 1;
-            font-size: 3vw; /* 使用视窗宽度单位 */
+            font-size: 3vw;
             background-color: var(--board-bg);
             border: 1px solid var(--cell-border);
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -111,9 +104,9 @@
             color: var(--input-number);
         }
         #right-panel {
-            width: 100%; /* 在小屏幕上占满宽度 */
+            width: 100%;
             max-width: 300px;
-            margin-top: 20px; /* 与棋盘保持一定距离 */
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
             padding: 15px;
@@ -148,14 +141,14 @@
         }
         #number-pad {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 保持3列布局 */
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin: 15px 0;
         }
         .number-btn {
-            width: 100%; /* 占满容器宽度 */
+            width: 100%;
             aspect-ratio: 1 / 1;
-            font-size: 18px; /* 调整字体大小 */
+            font-size: 18px;
             background-color: var(--button-bg);
             color: var(--button-text);
             border: none;
@@ -243,7 +236,7 @@
         }
         .cell.selected {
             background-color: #e0e0e0;
-            box-shadow: inset 0 0 0 3px #4CAF50; /* 增加阴影宽度 */
+            box-shadow: inset 0 0 0 3px #4CAF50;
         }
         .cell.user-input {
             color: var(--input-number);
@@ -251,60 +244,45 @@
         .cell {
             transition: opacity 0.3s ease;
         }
-        
-        /* 添加新的样式 */
         #board-controls {
             display: flex;
             justify-content: space-between;
             width: 48%;
             margin-top: 15px;
         } 
-        
         #timer, #error-count {
             font-size: 18px;
         }
-        
-        /* 响应式设计 */
         @media (min-width: 768px) {
-            /* 平板和PC */
             #game-container {
                 flex-direction: row;
                 justify-content: center;
             }
-
             #sudoku-board {
-                width: 500px; /* 限制最大宽度 */
+                width: 500px;
                 height: 500px;
             }
-
             .cell {
-                font-size: 24px; /* 固定字体大小 */
+                font-size: 24px;
             }
-
             #right-panel {
-                width: 240px; /* 恢复原来的宽度 */
+                width: 240px;
                 margin-top: 0;
                 margin-left: 20px;
             }
         }
-
         @media (max-width: 480px) {
-            /* 手机 */
             .cell {
-                font-size: 4vw; /* 稍微增大字体 */
+                font-size: 4vw;
             }
-
             #board-controls {
                 flex-direction: column;
                 align-items: center;
             }
-
             #timer, #error-count {
                 margin-bottom: 10px;
             }
         }
-
-        /* 为右侧控制面板添加新的悬停样式 */
         #right-panel .control-btn:hover,
         #right-panel select:hover,
         #right-panel #input-mode-btn:hover,
@@ -318,13 +296,9 @@
 <body>
     <h1>Orange数独</h1>
     <div id="game-container" role="application" aria-label="数独游戏">
-        <!-- 数独棋盘 -->
         <div id="sudoku-board" role="grid" aria-label="数独游戏棋盘"></div>
-        
-        <!-- 右侧控制面板 -->
         <div id="right-panel">
             <div id="controls">
-                <!-- 控制按钮和选项 -->
                 <button id="auto-check-btn" class="control-btn" aria-pressed="false">自动纠错</button>
                 <button id="input-mode-btn" class="control-btn">输入模式</button>
                 <div id="number-pad" role="grid" aria-label="数字键盘"></div>
@@ -344,16 +318,11 @@
             </div>
         </div>
     </div>
-    
-    <!-- 数独棋盘下方的控制面板 -->
     <div id="board-controls">
-        <!-- 计时器 -->
         <div id="timer" aria-live="polite">计时: 00:00</div>
-        <!-- 错误计数 -->
         <div id="error-count" aria-live="polite">错误次数: 0</div>
     </div>
     <script>
-    // 1. 全局变量
         let puzzle = [];
         let selectedCell = null;
         let timerInterval;
@@ -363,7 +332,6 @@
         let isInputMode = true;
         let autoCheckEnabled = false;
 
-    // 2. 工具函数
         const shuffleArray = (array) => {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -400,7 +368,90 @@
             return cell ? parseInt(cell.textContent) || 0 : 0;
         }
 
-    // 3. 游戏初始化和设置
+        function initGame() {
+            createBoard();
+            createNumberPad();
+            setupEventListeners();
+            document.getElementById('confirm-difficulty').style.display = 'none';
+            document.getElementById('difficulty').
+</script>
+</body>
+</html>
+<body>
+    <h1>Orange数独</h1>
+    <div id="game-container" role="application" aria-label="数独游戏">
+        <div id="sudoku-board" role="grid" aria-label="数独游戏棋盘"></div>
+        <div id="right-panel">
+            <div id="controls">
+                <button id="auto-check-btn" class="control-btn" aria-pressed="false">自动纠错</button>
+                <button id="input-mode-btn" class="control-btn">输入模式</button>
+                <div id="number-pad" role="grid" aria-label="数字键盘"></div>
+                <select id="difficulty" aria-label="选择难度" class="control-btn">
+                    <option value="">选择难度</option>
+                    <option value="medium">中等</option>
+                    <option value="easy">简单</option>
+                    <option value="hard">困难</option>
+                    <option value="expert">专家</option>
+                </select>
+                <button id="confirm-difficulty" class="control-btn">确认切换难度</button>
+                <select id="theme" aria-label="选择主题" class="control-btn">
+                    <option value="dark">暗黑主题</option>
+                    <option value="light">明亮主题</option>
+                    <option value="eye-care">护眼主题</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="board-controls">
+        <div id="timer" aria-live="polite">计时: 00:00</div>
+        <div id="error-count" aria-live="polite">错误次数: 0</div>
+    </div>
+    <script>
+        let puzzle = [];
+        let selectedCell = null;
+        let timerInterval;
+        let seconds = 0;
+        let errorCount = 0;
+        let highlightedNumber = null;
+        let isInputMode = true;
+        let autoCheckEnabled = false;
+
+        const shuffleArray = (array) => {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        };
+
+        function isValid(board, row, col, num) {
+            for (let x = 0; x < 9; x++) {
+                if (board[row][x] === num || board[x][col] === num) {
+                    return false;
+                }
+            }
+            let startRow = Math.floor(row / 3) * 3;
+            let startCol = Math.floor(col / 3) * 3;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i + startRow][j + startCol] === num) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        function isValidArray(arr) {
+            const set = new Set(arr);
+            return set.size === 9 && !set.has(NaN);
+        }
+
+        function getCellValue(row, col) {
+            const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+            return cell ? parseInt(cell.textContent) || 0 : 0;
+        }
+
         function initGame() {
             createBoard();
             createNumberPad();
@@ -490,7 +541,6 @@
             }
         }
 
-    // 4. 游戏逻辑
         function generatePuzzle(difficulty) {
             puzzle = generateSudoku();
             const cellsToRemove = {
@@ -540,7 +590,6 @@
             }
         }
 
-    // 5. UI 交互
         function renderPuzzle() {
             const cells = document.getElementsByClassName('cell');
             for (let i = 0; i < 9; i++) {
@@ -705,7 +754,6 @@
             });
         }
 
-    // 6. 游戏状态检查
         function isBoardFull() {
             const cells = document.getElementsByClassName('cell');
             for (let cell of cells) {
@@ -783,7 +831,6 @@
             }
         }
 
-    // 7. 计时器和错误计数
         function startTimer() {
             clearInterval(timerInterval);
             seconds = 0;
@@ -806,7 +853,6 @@
             document.getElementById('error-count').textContent = `错误次数: ${errorCount}`;
         }
 
-    // 8. 主程序入口
         window.onload = initGame;
     </script>
 </body>
