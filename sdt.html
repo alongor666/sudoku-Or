@@ -6,27 +6,27 @@
     <title>Orange数独</title>
     <style>
         :root {
-            --bg-color: #f0f0f0;
-            --text-color: #333;
-            --board-bg: #fff;
-            --cell-border: #ccc;
-            --box-border: #999;
-            --fixed-number: #00008b;
-            --input-number: #006400;
-            --control-bg: #e0e0e0;
-            --control-text: #333;
-            --button-bg: #adb3ad;
-            --button-text: rgba(19, 7, 7, 0.893);
-            --selected-cell-bg: #d0d0d0;
-            --selected-cell-color: #000;
-            --highlighted-bg: #0a0a05ce;
-            --highlighted-color: #bee263;
-            --hover-bg: #e0e0e0;
-            --hover-color: #333;
-            --fixed-hover-bg: #d0d0d0;
-            --fixed-hover-color: #00008b;
-            --control-hover-bg: #e6ffe6;
-            --control-hover-color: #000000;
+            --bg-color: #FFFFFF;           
+            --text-color: #2C3E50;         
+            --board-bg: #F8F9FA;           
+            --cell-border: #BDC3C7;        
+            --box-border: #7F8C8D;         
+            --fixed-number: #2980B9;       
+            --input-number: #27AE60;       
+            --control-bg: #F8F9FA;         
+            --control-text: #2C3E50;       
+            --button-bg: #1805037b;          
+            --button-text: #FFFFFF;        
+            --selected-cell-bg: #E8F8F5;   
+            --selected-cell-color: #2C3E50;
+            --highlighted-bg: #E8F8F5;     
+            --highlighted-color: #2C3E50;  
+            --hover-bg: #E8F8F5;           
+            --hover-color: #2C3E50;        
+            --fixed-hover-bg: #E8F8F5;     
+            --fixed-hover-color: #2980B9;  
+            --control-hover-bg: #E8F8F5;   
+            --control-hover-color: #2C3E50; 
         }
         body {
             font-family: Arial, sans-serif;
@@ -53,6 +53,9 @@
             gap: 1px;
             max-width: 100%;
             aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: var(--board-bg);
         }
         .cell {
             display: flex;
@@ -88,6 +91,18 @@
         .cell:nth-child(9n+1) {
             border-left: none;
         }
+        .cell:nth-child(1) {
+            border-top-left-radius: 10px;
+        }
+        .cell:nth-child(9) {
+            border-top-right-radius: 10px;
+        }
+        .cell:nth-child(73) {
+            border-bottom-left-radius: 10px;
+        }
+        .cell:nth-child(81) {
+            border-bottom-right-radius: 10px;
+        }
         .cell:hover:not(.selected) {
             background-color: var(--hover-bg, #e0e0e0);
             color: var(--hover-color, #333);
@@ -106,12 +121,12 @@
         #right-panel {
             width: 100%;
             max-width: 300px;
-            margin-top: 20px;
+            margin-left: 20px;
             display: flex;
             flex-direction: column;
-            padding: 15px;
+            padding: 20px;
             background-color: var(--control-bg);
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
             box-sizing: border-box;
         }
@@ -122,9 +137,9 @@
             height: 100%;
         }
         .control-btn, #controls select, #input-mode-btn {
-            height: 40px;
+            height: 40px;   
             padding: 0 15px;
-            font-size: 20px;
+            font-size: 18px;
             border: none;
             border-radius: 7.5px;
             background-color: var(--button-bg);
@@ -148,7 +163,7 @@
         .number-btn {
             width: 100%;
             aspect-ratio: 1 / 1;
-            font-size: 18px;
+            font-size: 24px;
             background-color: var(--button-bg);
             color: var(--button-text);
             border: none;
@@ -160,57 +175,50 @@
             width: 100%;
         }
         .dark-mode {
-            --bg-color: #121212;
+            --bg-color: #1A1A1A;
             --text-color: #E0E0E0;
-            --board-bg: #1E1E1E;
-            --cell-border: #2C2C2C;
-            --box-border: #3A3A3A;
-            --fixed-number: #b8d72c;
-            --input-number: #d4e58e;
-            --input-bg: #000000;
-            --control-bg: #333333;
-            --control-text: #FFEB3B;
-            --button-bg: #424242;
-            --button-text: #FFEB3B;
-            --new-game-button-bg: #FF5722;
-            --new-game-button-text: #FFFFFF;
-            --continue-button-bg: #2196F3;
-            --continue-button-text: #FFFFFF;
-            --selected-cell-bg: #FFFFFF;
-            --selected-cell-color: #000000;
-            --highlighted-bg: #4a4a4a;
-            --highlighted-color: #ffffff;
-            --hover-bg: #3a3a3a;
-            --hover-color: #ffffff;
-            --fixed-hover-bg: #4a4a4a;
-            --fixed-hover-color: #b8d72c;
-            --control-hover-bg: #1a331a;
-            --control-hover-color: #ffffff;
+            --board-bg: #2C2C2C;
+            --cell-border: #3A3A3A;
+            --box-border: #505050;
+            --fixed-number: #FFC107;
+            --input-number: #90CAF9;
+            --control-bg: #2C2C2C;
+            --control-text: #E0E0E0;
+            --button-bg: #3E3E3E;
+            --button-text: #FFC107;
+            --selected-cell-bg: #4F4F4F;
+            --selected-cell-color: #E0E0E0;
+            --highlighted-bg: #4F4F4F;
+            --highlighted-color: #E0E0E0;
+            --hover-bg: #4F4F4F;
+            --hover-color: #E0E0E0;
+            --fixed-hover-bg: #4F4F4F;
+            --fixed-hover-color: #FFC107;
+            --control-hover-bg: #4F4F4F;
+            --control-hover-color: #E0E0E0;
         }
         .eye-care-mode {
-            --bg-color: #F0EAD6;
-            --text-color: #2E4C2E;
-            --board-bg: #E6F0D8;
-            --cell-border: #C1CDB1;
-            --box-border: #A9B997;
-            --fixed-number: #8B4513;
-            --input-number: #161617ce;
-            --control-bg: #b6e77e;
-            --control-text: #2E4C2E;
-            --button-bg: #A9B997;
+            --bg-color: #FAF3E0;
+            --text-color: #3E4E3E;
+            --board-bg: #E6F0D4;
+            --cell-border: #C3D1B6;
+            --box-border: #7B8B72;
+            --fixed-number: #5D4037;
+            --input-number: #2E7D32;
+            --control-bg: #E6F0D4;
+            --control-text: #3E4E3E;
+            --button-bg: #A3D39C;
             --button-text: #2E4C2E;
-            --new-game-button-bg: #4CAF50;
-            --new-game-button-text: #FFFFFF;
-            --continue-button-bg: #FFA000;
-            --continue-button-text: #FFFFFF;
-            --highlighted-bg: #1c1c199c;
-            --highlighted-color: #aef0b2;
-            --hover-bg: #d8e6c3;
-            --hover-color: #2E4C2E;
-            --fixed-hover-bg: #c1cdb1;
-            --fixed-hover-color: #8B4513;
-            --control-hover-bg: #d8e6d8;
-            --control-hover-color: #2E4C2E;
+            --selected-cell-bg: #FFF9E5;
+            --selected-cell-color: #3E4E3E;
+            --highlighted-bg: #FFF9E5;
+            --highlighted-color: #3E4E3E;
+            --hover-bg: #FFF9E5;
+            --hover-color: #3E4E3E;
+            --fixed-hover-bg: #FFF9E5;
+            --fixed-hover-color: #5D4037;
+            --control-hover-bg: #FFF9E5;
+            --control-hover-color: #3E4E3E;
         }
         .sudoku-board .cell {
             color: var(--text-color);
@@ -244,15 +252,6 @@
         .cell {
             transition: opacity 0.3s ease;
         }
-        #board-controls {
-            display: flex;
-            justify-content: space-between;
-            width: 48%;
-            margin-top: 15px;
-        } 
-        #timer, #error-count {
-            font-size: 18px;
-        }
         @media (min-width: 768px) {
             #game-container {
                 flex-direction: row;
@@ -273,14 +272,7 @@
         }
         @media (max-width: 480px) {
             .cell {
-                font-size: 4vw;
-            }
-            #board-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            #timer, #error-count {
-                margin-bottom: 10px;
+                font-size: 5vw;
             }
         }
         #right-panel .control-btn:hover,
@@ -291,9 +283,17 @@
             color: var(--control-hover-color, #000000);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
+
+        #controls > * {
+            margin-bottom: 18.33px;
+        }
+
+        #controls > *:last-child {
+            margin-bottom: 0;
+        }
     </style>
 </head>
-<body>
+<body class="dark-mode">
     <h1>Orange数独</h1>
     <div id="game-container" role="application" aria-label="数独游戏">
         <div id="sudoku-board" role="grid" aria-label="数独游戏棋盘"></div>
@@ -303,31 +303,26 @@
                 <button id="input-mode-btn" class="control-btn">输入模式</button>
                 <div id="number-pad" role="grid" aria-label="数字键盘"></div>
                 <select id="difficulty" aria-label="选择难度" class="control-btn">
-                    <option value="">选择难度</option>
+                    <option value="easy" selected>简单</option>
                     <option value="medium">中等</option>
-                    <option value="easy">简单</option>
                     <option value="hard">困难</option>
                     <option value="expert">专家</option>
                 </select>
                 <button id="confirm-difficulty" class="control-btn">确认切换难度</button>
                 <select id="theme" aria-label="选择主题" class="control-btn">
-                    <option value="dark">暗黑主题</option>
+                    <option value="dark" selected>暗黑主题</option>
                     <option value="light">明亮主题</option>
                     <option value="eye-care">护眼主题</option>
                 </select>
+                <div id="timer" aria-live="polite" class="control-btn">计时: 00:00</div>
             </div>
         </div>
-    </div>
-    <div id="board-controls">
-        <div id="timer" aria-live="polite">计时: 00:00</div>
-        <div id="error-count" aria-live="polite">错误次数: 0</div>
     </div>
     <script>
         let puzzle = [];
         let selectedCell = null;
         let timerInterval;
         let seconds = 0;
-        let errorCount = 0;
         let highlightedNumber = null;
         let isInputMode = true;
         let autoCheckEnabled = false;
@@ -373,92 +368,13 @@
             createNumberPad();
             setupEventListeners();
             document.getElementById('confirm-difficulty').style.display = 'none';
-            document.getElementById('difficulty').
-</script>
-</body>
-</html>
-<body>
-    <h1>Orange数独</h1>
-    <div id="game-container" role="application" aria-label="数独游戏">
-        <div id="sudoku-board" role="grid" aria-label="数独游戏棋盘"></div>
-        <div id="right-panel">
-            <div id="controls">
-                <button id="auto-check-btn" class="control-btn" aria-pressed="false">自动纠错</button>
-                <button id="input-mode-btn" class="control-btn">输入模式</button>
-                <div id="number-pad" role="grid" aria-label="数字键盘"></div>
-                <select id="difficulty" aria-label="选择难度" class="control-btn">
-                    <option value="">选择难度</option>
-                    <option value="medium">中等</option>
-                    <option value="easy">简单</option>
-                    <option value="hard">困难</option>
-                    <option value="expert">专家</option>
-                </select>
-                <button id="confirm-difficulty" class="control-btn">确认切换难度</button>
-                <select id="theme" aria-label="选择主题" class="control-btn">
-                    <option value="dark">暗黑主题</option>
-                    <option value="light">明亮主题</option>
-                    <option value="eye-care">护眼主题</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div id="board-controls">
-        <div id="timer" aria-live="polite">计时: 00:00</div>
-        <div id="error-count" aria-live="polite">错误次数: 0</div>
-    </div>
-    <script>
-        let puzzle = [];
-        let selectedCell = null;
-        let timerInterval;
-        let seconds = 0;
-        let errorCount = 0;
-        let highlightedNumber = null;
-        let isInputMode = true;
-        let autoCheckEnabled = false;
-
-        const shuffleArray = (array) => {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        };
-
-        function isValid(board, row, col, num) {
-            for (let x = 0; x < 9; x++) {
-                if (board[row][x] === num || board[x][col] === num) {
-                    return false;
-                }
-            }
-            let startRow = Math.floor(row / 3) * 3;
-            let startCol = Math.floor(col / 3) * 3;
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++) {
-                    if (board[i + startRow][j + startCol] === num) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        function isValidArray(arr) {
-            const set = new Set(arr);
-            return set.size === 9 && !set.has(NaN);
-        }
-
-        function getCellValue(row, col) {
-            const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
-            return cell ? parseInt(cell.textContent) || 0 : 0;
-        }
-
-        function initGame() {
-            createBoard();
-            createNumberPad();
-            setupEventListeners();
-            document.getElementById('confirm-difficulty').style.display = 'none';
-            document.getElementById('difficulty').value = '';
-            changeTheme();
+            adjustRightPanel();
+            
+            // 生成简单难度的数独谜题
+            generatePuzzle('easy');
+            
+            // 应用暗黑主题
+            document.body.classList.add('dark-mode');
         }
 
         function createBoard() {
@@ -515,8 +431,6 @@
                 this.classList.toggle('active', autoCheckEnabled);
                 if (autoCheckEnabled) {
                     console.log('自动纠错已启用');
-                    errorCount = 0;
-                    updateErrorCount();
                 } else {
                     console.log('自动纠错已禁用');
                 }
@@ -688,6 +602,9 @@
                 console.error('Invalid number clicked');
                 return;
             }
+            
+            highlightNumber(num);
+            
             if (selectedCell) {
                 if (isInputMode) {
                     inputNumber(num);
@@ -707,15 +624,12 @@
             const col = parseInt(selectedCell.dataset.col);
             if (autoCheckEnabled) {
                 if (!isValidMove(row, col, num)) {
-                    errorCount++;
-                    updateErrorCount();
                     alert("错误、重复了");
                     return;
                 }
             }
             selectedCell.textContent = num;
             selectedCell.classList.add('user-input');
-            highlightNumber(num);
             highlightAreaWithoutClearing(selectedCell);
             
             if (isBoardFull()) {
@@ -736,7 +650,6 @@
                 }
             }
             selectedCell.textContent = num;
-            highlightNumber(num);
             highlightAreaWithoutClearing(selectedCell);
             
             if (isBoardFull()) {
@@ -766,29 +679,28 @@
 
         function checkBoard() {
             if (!autoCheckEnabled) {
-                errorCount = 0;
-                const cells = document.getElementsByClassName('cell');
-                for (let i = 0; i < 9; i++) {
-                    for (let j = 0; j < 9; j++) {
-                        const cell = cells[i * 9 + j];
-                        const value = parseInt(cell.textContent);
-                        if (!isValidMove(i, j, value)) {
-                            errorCount++;
-                        }
+                if (isBoardCorrect()) {
+                    clearInterval(timerInterval);
+                    const minutes = Math.floor(seconds / 60);
+                    const remainingSeconds = seconds % 60;
+                    const timeSpent = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+                    alert(`恭喜通关！\n用时：${timeSpent}`);
+                } else {
+                    alert(`很遗憾，您的答案不正确。请检查并重试。`);
+                }
+            }
+        }
+
+        function isBoardCorrect() {
+            for (let i = 0; i < 9; i++) {
+                for (let j = 0; j < 9; j++) {
+                    const value = getCellValue(i, j);
+                    if (value === 0 || !isValidMove(i, j, value)) {
+                        return false;
                     }
                 }
-                updateErrorCount();
             }
-
-            if (errorCount > 0) {
-                alert(`很遗憾，您的答案不正确。错误数量：${errorCount}。请检查并重试。`);
-            } else {
-                clearInterval(timerInterval);
-                const minutes = Math.floor(seconds / 60);
-                const remainingSeconds = seconds % 60;
-                const timeSpent = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
-                alert(`恭喜通关！\n用时：${timeSpent}\n错误次数：${errorCount}`);
-            }
+            return true;
         }
 
         function isValidMove(row, col, num) {
@@ -818,25 +730,10 @@
             return true;
         }
 
-        function checkError(event) {
-            const cell = event.target;
-            const row = parseInt(cell.dataset.row);
-            const col = parseInt(cell.dataset.col);
-            const value = parseInt(cell.textContent);
-            
-            if (isValid(puzzle, row, col, value)) {
-                cell.classList.remove('error-cell');
-            } else {
-                cell.classList.add('error-cell');
-            }
-        }
-
         function startTimer() {
             clearInterval(timerInterval);
             seconds = 0;
-            errorCount = 0;
             updateTimerDisplay();
-            updateErrorCount();
             timerInterval = setInterval(function() {
                 seconds++;
                 updateTimerDisplay();
@@ -849,9 +746,36 @@
             document.getElementById('timer').textContent = `计时: ${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
         }
 
-        function updateErrorCount() {
-            document.getElementById('error-count').textContent = `错误次数: ${errorCount}`;
+        function adjustRightPanel() {
+            const sudokuBoard = document.getElementById('sudoku-board');
+            const rightPanel = document.getElementById('right-panel');
+            const controls = document.getElementById('controls');
+
+            const boardHeight = sudokuBoard.offsetHeight;
+            rightPanel.style.height = `${boardHeight}px`;
+
+            const controlElements = controls.children;
+            const totalElements = controlElements.length;
+
+            let totalElementHeight = 0;
+            for (let element of controlElements) {
+                if (element.id !== 'number-pad') {
+                    totalElementHeight += element.offsetHeight;
+                } else {
+                    totalElementHeight += 150;
+                }
+            }
+
+            const availableSpace = (boardHeight - totalElementHeight - 40) * 0.8;
+            const spacing = availableSpace / (totalElements - 1);
+
+            for (let i = 0; i < totalElements - 1; i++) {
+                controlElements[i].style.marginBottom = `${spacing}px`;
+            }
+            controlElements[totalElements - 1].style.marginBottom = '0';
         }
+
+        window.addEventListener('resize', adjustRightPanel);
 
         window.onload = initGame;
     </script>
